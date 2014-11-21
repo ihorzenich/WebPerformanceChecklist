@@ -3,6 +3,7 @@ PerformanceChecklist
 Инструменты анализа скорости загрузки сайта с выдачей рекомендаций:
 * [GTmetrix](http://gtmetrix.com/)
 * [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+
 GTmetrix использует Google Page Speed + Yahoo! YSlow и выдает подробные рекомендации, зато Google PageSpeed Insights проверяет также загрузку на мобильных устройствах.
 
 ## Серверное
