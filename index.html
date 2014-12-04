@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="WebPerformanceChecklist : Чек-лист оптимизации скорости загрузки сайта">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>WebPerformanceChecklist</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/delka/WebPerformanceChecklist">View on GitHub</a>
+
+          <h1 id="project_title">WebPerformanceChecklist</h1>
+          <h2 id="project_tagline">Чек-лист оптимизации скорости загрузки сайта</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/delka/WebPerformanceChecklist/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/delka/WebPerformanceChecklist/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="Чек-лист-оптимизации-скорости-загрузки-сайта" class="anchor" href="#%D0%A7%D0%B5%D0%BA-%D0%BB%D0%B8%D1%81%D1%82-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Чек-лист оптимизации скорости загрузки сайта</h1>
+
+<p>Инструменты анализа скорости загрузки сайта с выдачей рекомендаций:</p>
+
+<ul>
+<li><a href="http://gtmetrix.com/">GTmetrix</a></li>
+<li><a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insights</a></li>
+</ul>
+
+<p>GTmetrix использует Google Page Speed + Yahoo! YSlow и выдает подробные рекомендации, зато Google PageSpeed Insights проверяет также загрузку на мобильных устройствах.</p>
+
+<h2>
+<a id="Серверное" class="anchor" href="#%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BD%D0%BE%D0%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Серверное</h2>
+
+<ol>
+<li>
+<a href="http://gtmetrix.com/enable-gzip-compression.html">Включение gzip</a>.</li>
+<li>Включение кеширования генерации страниц движком сайта.</li>
+<li>Включение кеширования для файлов, отдаваемых сервером:
+
+<ol>
+<li><a href="http://last-modified.com/ru/">Last-Modifed</a></li>
+<li><a href="http://gtmetrix.com/add-expires-headers.html">Expires headers</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#validating-cached-responses-with-etags">E-tag</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#cache-control">Cache-Control</a></li>
+<li><a href="https://www.maxcdn.com/blog/accept-encoding-its-vary-important/">Vary: Accept-Encoding header</a></li>
+</ol>
+</li>
+<li>Проверка чтоб не было 404-тых откликов на загрузку ресурсов - они замедляют загрузку.</li>
+</ol>
+
+<h2>
+<a id="Верстка" class="anchor" href="#%D0%92%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Верстка</h2>
+
+<ol>
+<li>Подключение CSS должно быть в <code>&lt;head&gt;</code>, а JS - в конце HTML, перед <code>&lt;/body&gt;</code>
+</li>
+<li>Минимизировать кол-во загружаемых файлов:
+
+<ol>
+<li>Использовать CSS-спрайты.</li>
+<li>Использовать base64-encode.</li>
+<li>Объединять все css в один файл.</li>
+<li>Объединять все js в один файл.</li>
+<li>Использовать только <a href="http://caniuse.com/#search=woff">WOFF</a> при подключении web fonts.</li>
+</ol>
+</li>
+<li>Отложить загрузку данных необязательных для первого отображения страницы:
+
+<ol>
+<li>Использовать defer для стороннего js.</li>
+<li>
+<a href="https://github.com/ideus-team/bem-snippets/blob/master/js-socialSharePreload/README.md">Вынести кнопки соц. шаринга в пост-загрузку</a>.</li>
+<li>Использовать LazyLoad для картинок.</li>
+<li>Подгружать невидимые при первой загрузке части страницы через AJAX (например содержимое табов)</li>
+</ol>
+</li>
+<li>Подгружать js-библиотеки и шрифты с CDN - для использования их версий закешированных с других сайтов и быстрой загрузки с CDN если кеша нет.</li>
+<li>Перенести внешние баннеры и другие ресурсы подгружаемые со сторонних медленных серверов - на сервер клиента.</li>
+<li>Минимизировать редиректы для внешних ресурсов (например внешний js отдается не по тому URL, по которому запрашивается, а по редиректу стого URL)</li>
+<li>Прописать размеры img в html</li>
+<li>Минимизировать CSS, JS и HTML</li>
+<li>Оптимизировать графику:
+
+<ol>
+<li>Конвертация типа картинок: 
+
+<ul>
+<li>png - для строгих цветов,</li>
+<li>jpg - для полноцвета и градиентов</li>
+<li>png24 для прозрачностей. 
+Возможно где-то можно заменить png24 на png8+matte, а где-то на png24 jpg.</li>
+</ul>
+</li>
+<li>Использовать технику <a href="http://www.netvlies.nl/blog/design-interactie/retina-revolution">30% quality Retina JPG</a>. </li>
+<li>Сохранять JPG как progressive</li>
+<li>Оптимизировать jpg и png-файлы:
+
+<ul>
+<li>с помощью <a href="http://compresspng.com/">http://compresspng.com/</a> и <a href="http://compressjpeg.com/">http://compressjpeg.com/</a> (сжимают лучше и быстрей чем консольные утилиты)</li>
+<li>или с помощь консольных утилит pngout, jpegtrank (в том числе плагинами к Grunt/Gulp)</li>
+</ul>
+</li>
+<li>Перенос визуальных украшений в CSS3 вместо картинок</li>
+<li>Объединять несколько рядом стоящих картинок-ссылок в одну картинку, на которую накладываются позиционированные ссылки.</li>
+</ol>
+</li>
+<li>Внести правки в дизайн, удалив тяжеловесные элементы.</li>
+<li>Желательно удалить query string ("?") в URL отдаваемых ресурсов (некоторые прокси не кешируют их)</li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">WebPerformanceChecklist maintained by <a href="https://github.com/delka">delka</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-6535082-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
