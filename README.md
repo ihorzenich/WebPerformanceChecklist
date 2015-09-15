@@ -7,15 +7,16 @@
 GTmetrix использует Google Page Speed + Yahoo! YSlow и выдает подробные рекомендации, зато Google PageSpeed Insights проверяет также загрузку на мобильных устройствах.
 
 ## Серверное
-1. [Включение gzip](http://gtmetrix.com/enable-gzip-compression.html).
-2. Включение кеширования генерации страниц движком сайта.
-3. Включение кеширования для файлов, отдаваемых сервером:
+1. Включение HTTP2.
+2. [Включение gzip](http://gtmetrix.com/enable-gzip-compression.html).
+3. Включение кеширования генерации страниц движком сайта.
+4. Включение кеширования для файлов, отдаваемых сервером:
   1. [Last-Modifed](http://last-modified.com/ru/)
   2. [Expires headers](http://gtmetrix.com/add-expires-headers.html)
   2. [E-tag](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#validating-cached-responses-with-etags)
   3. [Cache-Control](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#cache-control)
   4. [Vary: Accept-Encoding header](https://www.maxcdn.com/blog/accept-encoding-its-vary-important/)
-4. Проверка чтоб не было 404-тых откликов на загрузку ресурсов - они замедляют загрузку.
+5. Проверка чтоб не было 404-тых откликов на загрузку ресурсов - они замедляют загрузку.
 
 ##Верстка
 5. Подключение CSS должно быть в `<head>`, а JS - в конце HTML, перед `</body>`
